@@ -1,0 +1,72 @@
+{
+    "units": ["\\w", "\\d", "\\s", "[\\[\\]\\(\\)\"']", "\\S"],
+    "rules": [
+        {
+            "pattern": ["OPTIONS|HEAD|GET|POST|PUT|DELETE|TRACE|CONNECT"],
+            "name": "method",
+            "weight": 6
+        },
+        {
+            "pattern": ["\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}(\\.\\d+)?( \\+\\d{4})?",
+                        "\\d{2}/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/\\d{4}:\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?( \\+\\d{4})?"],
+            "name": "timestamp",
+            "weight": 60
+        },
+        {
+            "pattern": ["\\d{4}-\\d{2}-\\d{2}",
+                        "\\d{2}/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/\\d{4}"],
+            "name": "date",
+            "weight": 20
+        },
+        {
+            "pattern": ["\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?( \\+\\d{4})?"],
+            "name": "time",
+            "weight": 30
+        },
+        {
+            "pattern": ["(((25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d)))\\.){3}(25[0-5]|2[0-4]\\d|((1\\d{2})|([1-9]?\\d))))"],
+            "name": "ip",
+            "weight": 28
+        },
+        {
+            "pattern": ["\\d+\\.\\d+"],
+            "name": "float",
+            "weight": 6
+        },
+        {
+            "pattern": ["\\d+"],
+            "name": "int",
+            "weight": 2
+        },
+        {
+            "pattern": ["\\[[^\\]]*?\\]", "\\([^\\)]*?\\)"],
+            "name": "brackets",
+            "weight": 30
+        },
+        {
+            "pattern": ["\"[^\"]*?\"", "'[^']*?'"],
+            "name": "quote",
+            "weight": 4
+        },
+        {
+            "pattern": ["\\s+"],
+            "name": "blank",
+            "weight": 5
+        },
+        {
+            "pattern": ["\\w+"],
+            "name": "word",
+            "weight": 2
+        },
+        {
+            "pattern": ["[^-][\\w-]+[^-]',"],
+            "name": "char",
+            "weight": 1
+        },
+        {
+            "pattern": ["[:\\-/\\.\\[\\]\\(\\)\\?=&\"]"],
+            "name": "mark",
+            "weight": 1
+        }
+    ]
+}

@@ -1,18 +1,25 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 import re
 import json
 
 __author__ = 'tong'
 __version__ = '1.0.0'
 
+root_path = os.path.abspath(os.path.dirname(os.path.abspath(__file__)))
+
 
 class AutoLogRegex(object):
-    def __init__(self, knowledgebase):
-        if isinstance(knowledgebase, basestring):
-            with open(knowledgebase) as fp:
+    def __init__(self, base=os.path.join(root_path, 'knowledgebase', 'auto')):
+        if isinstance(base, basestring):
+            with open(base) as fp:
                 knowledgebase = json.load(fp)
+        elif isinstance(base, dict):
+            knowledgebase = base
+        else:
+            raise Exception('error base: %s' % base)
 
         self._tag = 'name'
         self._types = knowledgebase['units']
